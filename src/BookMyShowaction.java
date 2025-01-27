@@ -1,11 +1,10 @@
-
 import java.util.Scanner;
 
 public class BookMyShowaction {
     public static Scanner scanner = new Scanner(System.in);//scanner method for get the input
     public static void start() {//start method
 
-        BookMyShow.getAdminlist().add(new Admin("1", "1"));//set the value to constructor
+        BookMyShow.getAdminlist().add(new Admin("admin123", "12345"));//set the value to constructor
 
         System.out.println("*****WELCOMME*****");
 
@@ -19,7 +18,7 @@ public class BookMyShowaction {
                 {
                     Admin login = AdminAction.admin_login();
                     if (login != null) {//return login will null call the operation
-                        AdminAction.operations(login);
+                        AdminAction.operations();
                         break;
                     } else {
                         System.out.println("invalid admin");//admin not found
