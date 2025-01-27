@@ -10,7 +10,7 @@ This Java-based terminal application, modeled after the BookMyShow platform, all
 
 
 
-## Key Features
+## 🔑 Key Features
 
 ### For Users
 
@@ -37,5 +37,30 @@ This Java-based terminal application, modeled after the BookMyShow platform, all
 * Command Line Interface
 * Git
 
+Clone the repository:
+```bash
+git clone https://github.com/Dharneesh23/Book-MyShow.git
+```
 
+Change Directory
+```bash
+cd BookMyShowFinal
+```
+Compile the Main File
+```bash
+javac BookMyShowFinal.java
+```
+Run in the Terminal
+```bash
+java BookMyShowFinal
+```
+
+
+## Contact
+For any queries or feedback, reach out to:
+- **Developer:** Dharneesh S
+- **Email:** ddharnish42@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/dharneesh-s-563a9b2a3/
+
+-      This project was developed to enhance backend coding skills for learning purposes. Feel free to contribute or share any suggestions!
 
