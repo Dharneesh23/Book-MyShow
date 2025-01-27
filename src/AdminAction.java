@@ -21,7 +21,7 @@ public class AdminAction {//Admin action class for admin operation
         return null;
     }
 
-    public static void operations(Admin user) {//operation class for admin operation
+    public static void operations() {//operation class for admin operation
         while (true) {
             System.out.println("Enter the Admin Choice");
             System.out.println(
@@ -279,3 +279,5 @@ public class AdminAction {//Admin action class for admin operation
         }
     }
 }
+   
+
