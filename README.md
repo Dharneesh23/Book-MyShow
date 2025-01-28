@@ -7,6 +7,8 @@ This Java-based terminal application, modeled after the BookMyShow platform, all
 
 ## Console Execution
 
+https://github.com/user-attachments/assets/2b00f60a-e221-4a7e-936d-9581c3c0ac2c
+
 
 
 
