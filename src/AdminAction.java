@@ -7,18 +7,24 @@ public class AdminAction {//Admin action class for admin operation
     private static  Scanner scanner = new Scanner(System.in);//Scanner method why static ?using static for to call the scanner method we do not create any object with the help of static
 
     public static Admin admin_login() {//Admin login method for admin login
-        System.out.print("Enter The admin_Id:");
-        String adminId = scanner.next();//get the admin id
-        System.out.print("Enter The Password:");
-        String adminPass = scanner.next();//get the admin password
-        for (Admin admin : BookMyShow.getAdminlist()) {//enhanced for loop,to iterate at one by one and stored to referance of admin
+
+        System.out.print("Enter The Username:");
+        String adminId = scanner.next();//get username
+        for (Admin admin: BookMyShow.getAdminlist()) {//enhanced for loop,to iterate at one by one and stored to reference of admin
             if (admin.getUserid().equals(adminId)) {//check the condition
-                if (admin.getPassword().equals(adminPass)) {//check the condition
-                    return admin;//return the reference of admin
+                System.out.print("Enter The Password:");
+                String adminPassword = scanner.next();// get password
+                 // check the reference id and pass
+                if (admin.getPassword().equals(adminPassword)) {//check the condition
+                    return admin;// return the user
+                } else {
+                    return new Admin(null, null);//  wrong pass or wrong id return  null value to user
                 }
+
+
             }
-        }
-        return null;
+
+        }return null;// no account pass null
     }
 
     public static void operations() {//operation class for admin operation
@@ -57,8 +63,14 @@ public class AdminAction {//Admin action class for admin operation
         String movieName = scanner.next();//get the movie name
         System.out.print("Enter the Location:");
         String movieLocation = scanner.next();//get the location of the movie based on theatre
-        System.out.print("Enter the Date:");
-        LocalDate Starting_Date = LocalDate.parse(scanner.next(), BookMyShow.getFormatter());// LocalDate is implicit class in java to get the local date
+        LocalDate Starting_Date;
+        while (true) {
+            System.out.print("Enter the Date:");
+             Starting_Date = LocalDate.parse(scanner.next(), BookMyShow.getFormatter());
+            if (Starting_Date.isBefore(LocalDate.now())) {
+                continue;
+            }break;
+        }
         boolean Check_The_Theatre_in_This_location = false;// number of theatre in that locations
 
         ArrayList<Theatre> theatreInThatLocation=new ArrayList<>();//array list for theatre location
@@ -98,7 +110,6 @@ public class AdminAction {//Admin action class for admin operation
             continue theatre;
 
         }
-
         Screen currentScreen = null;// store current screen
         screen: while (true) {//this condition will end until the condition will false
             for (String screenName : currentTheatre.getScreen_name().keySet()) {
@@ -279,5 +290,4 @@ public class AdminAction {//Admin action class for admin operation
         }
     }
 }
-   
 
