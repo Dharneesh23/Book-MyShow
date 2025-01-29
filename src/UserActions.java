@@ -6,46 +6,51 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class UserActions {
-    public static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);//scanner for get the input from the user
 
-    public static User login() {// perform the login action of the user
+    public static User login() {//login method for login
 
         System.out.print("Enter The Username:");
-        String userId = scanner.next();// get user name
-        System.out.print("Enter The Password:");
-        String userPassword = scanner.next();// get password
+        String userId = scanner.next();//get username
+        for (User user: BookMyShow.getUseList()) {//enhanced for loop,to iterate at one by one and stored to reference of admin
+            if (user.getUserid().equals(userId)) {//check the condition
+                System.out.print("Enter The Password:");
+                String userPassword = scanner.next();// get password
 
 
-        for (User temp : BookMyShow.getUseList()) {// get user arraylist
-            if (temp.getUserid().equals(userId)) {// check every object id and pass
-                if (temp.getPassword().equals(userPassword)) {
-                    return temp;// if matches return the current user object
-                } else {
-                    return new User(null, null, null);// for wrong pass return object with null values
+                for (User temp : BookMyShow.getUseList()) {// get user arraylist
+                    if (temp.getUserid().equals(userId)) {// check the reference id and pass
+                        if (temp.getPassword().equals(userPassword)) {//check the condition
+                            return temp;// return the user
+                        } else {
+                            return new User(null, null, null);//  wrong pass or wrong id return  null value to user
+                        }
+                    }
+
                 }
-            }
 
+            }
+        }
+            return null;// no account pass null
         }
 
 
-        return null;// no account pass null
-    }
 
-    public static void register() {// if no account the function is called
+    public static void register() {//register method for register a new user
 
 
-        System.out.print("No user found \n do you Like to Register press 1 or press 2 to exit:");// conformation to get into register
+        System.out.print("No user found \n do you Like to Register press 1 or press 2 to exit:");// get into register
         int choice = scanner.nextInt();
 
 
         if (choice==1) {// check input
             System.out.print("Enter username:");
-            String userid = scanner.next();// get user name
+            String userid = scanner.next();// get username
             System.out.print("Enter password:");
             String userpassword = scanner.next();// get password
             System.out.print("Enter Your Location:");
-            String userlocation = scanner.next();
-            BookMyShow.getUseList().add(new User(userid, userpassword, userlocation));// get locatiom
+            String userlocation = scanner.next();// get locatiom
+            BookMyShow.getUseList().add(new User(userid, userpassword, userlocation));//get the details and stored to user
         }
 
         else if (choice==2) {
@@ -55,7 +60,7 @@ public class UserActions {
 
     }
 
-    public static void operations(User currentUser) {
+    public static void operations(User currentUser) {//operations method
 
 
         UserActions.displayAllMovies(currentUser, BookMyShow.getToday());// very bigning of the login show the movies
@@ -181,9 +186,9 @@ public class UserActions {
                     break theatre;//check the user entered theatre name is valid or not
 
                 }}
-            System.out.print("Incorrect theatre name \n continue or press (N) to exit\n:");
-            String choice = scanner.nextLine();
-            if (choice.toLowerCase().equals("n")||choice.toLowerCase().equals("N")) {
+            System.out.print("Incorrect theatre name \n continue or press (1) to exit\n:");
+            int choice = scanner.nextInt();
+            if (choice==1) {
                 return;
             }
             continue theatre;
@@ -275,7 +280,8 @@ public class UserActions {
                 long temp = Long.parseLong(a);
                 sum += temp;
             }
-
+             if( currentshow.getScreen().getAvailableseat()>seatcount)
+             {
             System.out.print("Enter the row for " + printingPurpose + "seat to book :");// get the ticket row and seat number
 
             String choiceseat = scanner.next();
@@ -329,6 +335,7 @@ public class UserActions {
             printingPurpose++;// increment for printing
             seatcount--;// to exit while or condition
         }
+             }
 
         long totalamount = (long) (finalseatcount * currentshow.getPrice());
 
@@ -357,33 +364,41 @@ public class UserActions {
     public static void changeLocation(User currentuserob) {// to change location
 
         System.out.print("Enter The Location To Change:");
-        String changelocation = scanner.nextLine();// get the input to change location
+        String changelocation = scanner.next();// get the input to change location
         currentuserob.setLocation(changelocation);// set to user
+        System.out.println("Location change successfully!!");
         return;
 
     }
 
     public static LocalDate changeDate(User currentuserob) {// tp change date
 
-        System.out.print("Enter The date To Change:");
-        LocalDate changedate = LocalDate.parse(scanner.nextLine(), BookMyShow.getFormatter());
-
-        return changedate;// return the date which is choosen by the user
+        LocalDate changedate;
+        while (true) {
+            System.out.println("Enter the date for change :");
+             changedate = LocalDate.parse(scanner.next(), BookMyShow.getFormatter());
+            if (changedate.isBefore(LocalDate.now())) {
+                System.out.println("reenter the current date!!!");
+                continue;
+            }break;
+        }
+        System.out.println("Date change successfully!!!");
+        return changedate;// return the date
 
     }
 
     public static void viewtickets(User currentuser) {// to dispaly the ticket
-        for (var ticket : currentuser.getTickets()) {// get the all tickets object from the currnt user ticket array
-            // list
+        for (var ticket : currentuser.getTickets()) {//enhanced for loop to iterate and store the current user tickets to store in ticket
 
-            System.out.println("Movie name:" + ticket.getMovieName());// print the details of the ticket like
-            System.out.println("Theare name:" + ticket.getTheatreName());
-            System.out.println(" Date:" + ticket.getDate() );
-            System.out.println(" Screen name:" + ticket.getScreen() );
-            System.out.println("Timing:" + ticket.getTime() );
-            System.out.println("Number of seats:" + ticket.getNumberOfSeats() );
-            System.out.println("Amount Paid for Ticket:" + ticket.getAmountPaid());
-            System.out.println("seats are:" + ticket.getSeats() );
+
+            System.out.println("Movie name:" + ticket.getMovieName());//display purpose
+            System.out.println("Theare name:" + ticket.getTheatreName());//display purpose
+            System.out.println(" Date:" + ticket.getDate());//display purpose
+            System.out.println(" Screen name:" + ticket.getScreen());//display purpose
+            System.out.println("Timing:" + ticket.getTime());//display purpose
+            System.out.println("Number of seats:" + ticket.getNumberOfSeats());//display purpose
+            System.out.println("Amount Paid for Ticket:" + ticket.getAmountPaid());//display purpose
+            System.out.println("seats are:" + ticket.getSeats());//display purpose
 
 
         }
