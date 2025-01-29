@@ -16,15 +16,16 @@ public class BookMyShowaction {
             switch (choice) {
                 case 1://for admin login
                 {
-                    Admin login = AdminAction.admin_login();
-                    if (login != null) {//return login will null call the operation
-                        AdminAction.operations();
-                        break;
+                    Admin user = AdminAction.admin_login();
+                    if (user == null) {//no account
+                        System.out.println("Invalid admin");
+
+                    } else if (user.getUserid() == null) {//password attempts
+                        System.out.println("Wrong password:");
                     } else {
-                        System.out.println("invalid admin");//admin not found
-                        break;
-                    }
-                }
+                        AdminAction.operations();//success of login
+                    }       break;
+            }
                 case 2://user login
                 {
                     User user = UserActions.login();
