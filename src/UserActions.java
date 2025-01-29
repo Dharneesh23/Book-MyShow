@@ -18,10 +18,10 @@ public class UserActions {
                 String userPassword = scanner.next();// get password
 
 
-                for (User temp : BookMyShow.getUseList()) {// get user arraylist
-                    if (temp.getUserid().equals(userId)) {// check the reference id and pass
-                        if (temp.getPassword().equals(userPassword)) {//check the condition
-                            return temp;// return the user
+
+                    if (user.getUserid().equals(userId)) {// check the reference id and pass
+                        if (user.getPassword().equals(userPassword)) {//check the condition
+                            return user;// return the user
                         } else {
                             return new User(null, null, null);//  wrong pass or wrong id return  null value to user
                         }
@@ -29,10 +29,10 @@ public class UserActions {
 
                 }
 
-            }
+            }return null;// no account pass null
         }
-            return null;// no account pass null
-        }
+
+
 
 
 
@@ -405,3 +405,4 @@ public class UserActions {
     }
 
 }
+
