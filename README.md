@@ -3,7 +3,9 @@
 This Java-based terminal application, modeled after the BookMyShow platform, allows users to browse movies, choose seats, book tickets, and manage accounts. It operates solely in the terminal and is created to help improve backend development skills and logical reasoning.
 
 ## Architecture
-![BookMy show](https://github.com/user-attachments/assets/93bb0694-2702-4b81-922e-91b2355d85a2)
+
+![b2](https://github.com/user-attachments/assets/74dcba4c-389c-44a5-87f7-6467059e3ecb)
+
 
 ## Console Execution
 
