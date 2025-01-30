@@ -1,4 +1,4 @@
-public class Admin {//Admin pojo class
+public class Admin { //Admin pojo class
     private String userid;//variable name for userId
     private String password;//variable name for password
 
