@@ -18,7 +18,7 @@ public class AdminAction {//Admin action class for admin operation
                 if (admin.getPassword().equals(adminPassword)) {//check the condition
                     return admin;// return the user
                 } else {
-                    return new Admin(null, null);//  wrong pass or wrong id return  null value to user
+                    return new Admin(null, null);//  wrong pass OR wrong id return  null value to user
                 }
 
 
